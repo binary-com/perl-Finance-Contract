@@ -509,6 +509,23 @@ sub effective_start {
         :                                                       $self->date_start;
 }
 
+=head2 volatility_effective_start
+
+=item * For expired non setteable contract (i.e. still waiting for settlement tick), this is set to L</date_expiry>
+
+=item * For non expired contract, this is L</effective_start>
+
+=cut
+
+sub volatility_effective_start {
+    my $self = shift;
+
+    return ($self->date_pricing->is_after($self->date_expiry))
+        ? $self->date_expiry
+        : $self->effective_start;
+}
+
+
 =head2 fixed_expiry
 
 A Boolean to determine if this bet has fixed or flexible expiries.

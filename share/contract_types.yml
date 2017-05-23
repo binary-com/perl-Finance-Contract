@@ -197,7 +197,12 @@ VANILLA_PUT:
   pricing_code: VANILLA_PUT
 INVALID:
   category: invalid
-ERC20:
+ERC20ICO:
+  category: coinauction
+  payout_type: non-binary
+  payouttime: end
+  pricing_code: coinauction
+BTCICO:
   category: coinauction
   payout_type: non-binary
   payouttime: end

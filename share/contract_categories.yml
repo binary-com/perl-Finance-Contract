@@ -80,7 +80,7 @@ coinauction:
     available_types:
       - ERC20ICO
       - BTCICO
-    explanation: "Binary ICO auction
+    explanation: "Binary ICO auction"
 vanilla:
     offer: 0
     display_order: 0

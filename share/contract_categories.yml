@@ -72,6 +72,15 @@ asian:
     available_types:
       - ASIANU
       - ASIAND
+coinauction:
+    display_order: 7
+    display_name: "Binary ICO auction"
+    supported_expiries:
+      - intraday
+    available_types:
+      - ERC20ICO
+      - BTCICO
+    explanation: "Binary ICO auction"
 vanilla:
     offer: 0
     display_order: 0

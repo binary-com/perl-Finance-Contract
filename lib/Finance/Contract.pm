@@ -794,6 +794,8 @@ sub _barrier_for_shortcode_string {
 sub _pipsized_value {
     my ($self, $value) = @_;
 
+    die 'Trying to pipsize a string[' . $value . '] shortcode[' . $self->shortcode . ']' unless (looks_like_number($value));
+
     my $display_decimals = log(1 / $self->pip_size) / log(10);
     $value = sprintf '%.' . $display_decimals . 'f', $value;
     return $value;

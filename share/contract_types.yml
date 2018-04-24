@@ -21,7 +21,7 @@ CALL:
   id: 10
   category: callput
   display_name: Higher
-  other_side_code: PUTE
+  other_side_code: PUT
   payout_type: binary
   payouttime: end
   pricing_code: CALL
@@ -99,7 +99,7 @@ EXPIRYMISS:
   id: 180
   category: endsinout
   display_name: Ends Outside
-  other_side_code: EXPIRYRANGEE
+  other_side_code: EXPIRYRANGE
   payout_type: binary
   payouttime: end
   pricing_code: EXPIRYMISS
@@ -117,7 +117,7 @@ EXPIRYRANGE:
   id: 170
   category: endsinout
   display_name: Ends Between
-  other_side_code: EXPIRYMISSE
+  other_side_code: EXPIRYMISS
   payout_type: binary
   payouttime: end
   pricing_code: EXPIRYRANGE
@@ -153,7 +153,7 @@ PUT:
   id: 20
   category: callput
   display_name: Lower
-  other_side_code: CALLE
+  other_side_code: CALL
   payout_type: binary
   payouttime: end
   pricing_code: PUT

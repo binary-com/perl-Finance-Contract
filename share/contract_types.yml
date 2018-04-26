@@ -198,6 +198,26 @@ TICKLOW:
   sentiment: low
   base_commission: 0.015
   has_user_defined_barrier: 0
+RUNHIGH:
+  id: 420
+  category: highlowticks
+  display_name: Run High
+  payout_type: binary
+  payouttime: end
+  pricing_code: RUNHIGH
+  sentiment: high
+  base_commission: 0.015
+  has_user_defined_barrier: 0
+RUNLOW:
+  id: 430
+  category: highlowticks
+  display_name: Run Low
+  payout_type: binary
+  payouttime: end
+  pricing_code: RUNLOW
+  sentiment: low
+  base_commission: 0.015
+  has_user_defined_barrier: 0
 EXPIRYMISS:
   id: 180
   category: endsinout

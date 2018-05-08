@@ -227,21 +227,21 @@ RESETPUT:
   payouttime: end
   pricing_code: RESETPUT
   sentiment: down
-SINGLE_ACCRUAL:
+SINGLEACCRUAL:
   id: 420
   category: accrual
   display_name: Single Accrual
   payout_type: non-binary
   payouttime: hit
-  pricing_code: SINGLE_ACCRUAL
+  pricing_code: SINGLEACCRUAL
   sentiment: low_vol
-DOUBLE_ACCRUAL:
+DOUBLEACCRUAL:
   id: 430
   category: accrual
   display_name: Double Accrual
   payout_type: non-binary
   payouttime: hit
-  pricing_code: DOUBLE_ACCRUAL
+  pricing_code: DOUBLEACCRUAL
   sentiment: low_vol
 VANILLA_CALL:
   category: vanilla

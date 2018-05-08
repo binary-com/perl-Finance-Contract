@@ -102,8 +102,8 @@ accrual:
       - tick
     explanation: "Dummy."
     available_types:
-      - SINGLE_ACCRUAL
-      - DOUBLE_ACCRUAL
+      - SINGLEACCRUAL
+      - DOUBLEACCRUAL
 vanilla:
     offer: 0
     display_order: 0

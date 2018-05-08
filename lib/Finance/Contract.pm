@@ -504,7 +504,9 @@ our $BARRIER_CATEGORIES = {
     staysinout   => ['american'],
     digits       => ['non_financial'],
     asian        => ['asian'],
+    reset        => ['reset'],
     lookback     => ['lookback'],
+    highlowticks => ['american'],
 };
 
 =head2 barrier_category
@@ -726,7 +728,7 @@ sub _build_timeindays {
     # Since we have fixed feed generation frequency for volatility indices, we will need to adjust the contract duration
     # to the actual number of ticks through the contract duration to prevent under-pricing ITM contracts. But we are only adjusting
     # for contracts less than 5 minutes.
-    if ($self->market->name eq 'volidx' and not($self->is_atm_bet or $self->for_sale) and $time_to_expiry->minutes < 5) {
+    if ($self->market->name eq 'volidx' and not ($self->is_atm_bet or $self->for_sale or $self->tick_expiry) and $time_to_expiry->minutes < 5) {
         my $date_start_adjustment  = $self->effective_start->epoch % 2 ? 1 : 2;
         my $date_expiry_adjustment = $self->date_expiry->epoch % 2     ? 1 : 0;
         my $actual_duration =
@@ -795,6 +797,8 @@ sub _barrier_for_shortcode_string {
     my ($self, $string) = @_;
 
     return $string if $self->supplied_barrier_type eq 'relative';
+
+    return $string if defined $self->category and $self->category->code eq 'reset' and $string eq 'S0P';
 
     # better to use sprintf else roundcommon can return as 1e-1 which will be concatenated as it is
     return 'S' . sprintf('%0.0f', roundcommon(1, $string / $self->pip_size)) . 'P' if $self->supplied_barrier_type eq 'difference';

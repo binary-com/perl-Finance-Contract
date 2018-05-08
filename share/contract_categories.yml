@@ -93,6 +93,17 @@ highlowticks:
     available_types:
       - TICKHIGH
       - TICKLOW
+accrual:
+    display_order: 9
+    display_name: "Single Accrual/Double Accrual"
+    supported_expiries:
+      - daily
+      - intraday
+      - tick
+    explanation: "Dummy."
+    available_types:
+      - SINGLEACCRUAL
+      - DOUBLEACCRUAL
 vanilla:
     offer: 0
     display_order: 0

@@ -227,16 +227,16 @@ RESETPUT:
   payouttime: end
   pricing_code: RESETPUT
   sentiment: down
-VANILLACALL:
+VANILLA_CALL:
   category: vanilla
   payout_type: non-binary
   payouttime: end
-  pricing_code: VANILLACALL
-VANILLAPUT:
+  pricing_code: VANILLA_CALL
+VANILLA_PUT:
   category: vanilla
   payout_type: non-binary
   payouttime: end
-  pricing_code: VANILLAPUT
+  pricing_code: VANILLA_PUT
 LBFLOATCALL:
   id: 420
   category: lookback

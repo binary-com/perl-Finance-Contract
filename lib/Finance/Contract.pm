@@ -735,18 +735,6 @@ sub _build_timeindays {
         from => $self->effective_start,
     });
 
-    # Since we have fixed feed generation frequency for volatility indices, we will need to adjust the contract duration
-    # to the actual number of ticks through the contract duration to prevent under-pricing ITM contracts. But we are only adjusting
-    # for contracts less than 5 minutes.
-    if ($self->market->name eq 'volidx' and not($self->is_atm_bet or $self->for_sale or $self->tick_expiry) and $time_to_expiry->minutes < 5) {
-        my $date_start_adjustment  = $self->effective_start->epoch % 2 ? 1 : 2;
-        my $date_expiry_adjustment = $self->date_expiry->epoch % 2     ? 1 : 0;
-        my $actual_duration =
-            $self->date_expiry->minus_time_interval($date_expiry_adjustment)->epoch -
-            $self->effective_start->plus_time_interval($date_start_adjustment)->epoch;
-        $time_to_expiry = Time::Duration::Concise->new(interval => $actual_duration);
-    }
-
     my $tid = Math::Util::CalculatedValue::Validatable->new({
         name        => 'time_in_days',
         description => 'Duration of this bet in days',

@@ -739,7 +739,7 @@ sub _build_timeindays {
     # to the actual number of ticks through the contract duration to prevent under-pricing ITM contracts. But we are only adjusting
     # for contracts less than 5 minutes.
     if (    $self->market->name eq 'synthetic_index'
-        and $self->market->generation_interval->seconds > 1
+        and $self->submarket->generation_interval->seconds > 1
         and not($self->is_atm_bet or $self->for_sale or $self->tick_expiry)
         and $time_to_expiry->minutes < 5)
     {

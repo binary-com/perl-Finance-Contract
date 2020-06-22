@@ -234,6 +234,19 @@ One of L</date_expiry> or C<duration> must be provided.
 
 has duration => (is => 'ro');
 
+=head2 pricing_new
+
+(optional) A flag to indicate if this is a new contract.
+
+For new contract, L</date_start> and L</date_pricing> are identical for consistency.
+
+=cut
+
+has pricing_new => (
+    is         => 'ro',
+    lazy_build => 1,
+);
+
 =head2 is_forward_starting
 
 True if this contract is considered as forward-starting at L</date_pricing>.
@@ -784,8 +797,29 @@ sub _get_time_to_end {
 
 #== BUILDERS =====================
 
+sub _build_pricing_new {
+    my $self = shift;
+
+    $self->date_pricing;
+    # do not use $self->date_pricing here because milliseconds matters!
+    # _date_pricing_milliseconds will not be set if date_pricing is not built.
+    my $time = $self->_date_pricing_milliseconds // $self->date_pricing->epoch;
+    return 0 if $time > $self->date_start->epoch;
+    return 1;
+}
+
 sub _build_date_pricing {
-    return Date::Utility->new;
+    my $self = shift;
+
+    my $time = Time::HiRes::time();
+    # All date related objects in a contract are in second precision.
+    # But, $self->pricing_new flag should be in ms space.
+    $self->_date_pricing_milliseconds($time);
+    my $now = Date::Utility->new($time);
+
+    return ($self->has_pricing_new and $self->pricing_new)
+        ? $self->date_start
+        : $now;
 }
 
 sub _build_is_forward_starting {

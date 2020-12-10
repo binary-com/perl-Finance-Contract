@@ -68,7 +68,7 @@ use List::Util qw(min max first);
 use Scalar::Util qw(looks_like_number);
 use Math::Util::CalculatedValue::Validatable;
 use Date::Utility;
-use Format::Util::Numbers qw(roundcommon roundtoprecision);
+use Format::Util::Numbers qw(roundcommon);
 use POSIX qw( floor );
 use Time::Duration::Concise;
 
@@ -911,8 +911,7 @@ sub _barrier_for_shortcode_string {
 sub _pipsized_value {
     my ($self, $value) = @_;
 
-    my $display_decimals = log(1 / $self->pip_size) / log(10);
-    $value = roundtoprecision($display_decimals, $value);
+    $value = roundcommon($self->pip_size, $value);
     return $value;
 }
 

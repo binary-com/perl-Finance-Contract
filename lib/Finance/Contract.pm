@@ -911,8 +911,7 @@ sub _barrier_for_shortcode_string {
 sub _pipsized_value {
     my ($self, $value) = @_;
 
-    $value = roundcommon($self->pip_size, $value);
-    return $value;
+    return roundcommon($self->pip_size, $value);
 }
 
 no Moose;
